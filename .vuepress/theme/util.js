@@ -106,6 +106,8 @@ function resolvePath (relative, base, append) {
 
 export function resolveSidebarItems (page, route, site, localePath) {
   const pageSidebarConfig = page.frontmatter.sidebar
+    ? page.frontmatter.sidebar
+    : site.themeConfig.sidebar
   if (pageSidebarConfig === 'auto') {
     return resolveHeaders(page)
   }

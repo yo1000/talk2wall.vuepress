@@ -25,13 +25,14 @@ import Vue from 'vue'
 import nprogress from 'nprogress'
 import Home from './Home.vue'
 import Navbar from './Navbar.vue'
+import NavLink from './NavLink.vue'
 import Page from './Page.vue'
 import Sidebar from './Sidebar.vue'
 import { pathToComponentName } from '@app/util'
 import { resolveSidebarItems } from './util'
 
 export default {
-  components: { Home, Page, Sidebar, Navbar },
+  components: { Home, Page, Sidebar, Navbar, NavLink },
   data () {
     return {
       isSidebarOpen: false
@@ -57,7 +58,10 @@ export default {
       return (
         !frontmatter.layout &&
         !frontmatter.home &&
-        frontmatter.sidebar !== false &&
+        (
+          frontmatter.sidebar !== false ||
+          themeConfig.themeConfig.sidebar !== false
+        ) &&
         this.sidebarItems.length
       )
     },
@@ -79,6 +83,15 @@ export default {
         },
         userPageClass
       ]
+    },
+    data () {
+      return this.$page.frontmatter
+    },
+    actionLink () {
+      return {
+        link: this.data.actionLink,
+        text: this.data.actionText
+      }
     }
   },
 
@@ -175,3 +188,17 @@ function updateMetaTags (meta, current) {
 
 <style src="prismjs/themes/prism-tomorrow.css"></style>
 <style src="./styles/theme.styl" lang="stylus"></style>
+<style lang="stylus">
+@import './styles/config.styl'
+
+.footer
+  z-index 0
+  padding 2.5rem
+  border-top 1px solid $borderColor
+  text-align center
+  color lighten($textColor, 25%)
+  background-color $bgColor
+
+.sidebar
+  z-index -10
+</style>

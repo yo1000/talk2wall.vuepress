@@ -20,6 +20,9 @@
       </p>
     </div>
     <slot name="bottom"/>
+    <div class="footer" v-if="$site.themeConfig.footer">
+      {{ $site.themeConfig.footer }}
+    </div>
   </div>
 </template>
 
