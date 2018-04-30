@@ -1,6 +1,6 @@
 module.exports = {
-  title: 'Hello VuePress',
-  description: 'Just playing around',
+  title: 'talk2wall',
+  description: 'Incurable chūni',
   base: '/',
   sidebar: 'auto',
   themeConfig: {
