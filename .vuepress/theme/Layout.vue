@@ -28,11 +28,12 @@ import Navbar from './Navbar.vue'
 import NavLink from './NavLink.vue'
 import Page from './Page.vue'
 import Sidebar from './Sidebar.vue'
+import AboutMe from './AboutMe.vue'
 import { pathToComponentName } from '@app/util'
 import { resolveSidebarItems } from './util'
 
 export default {
-  components: { Home, Page, Sidebar, Navbar, NavLink },
+  components: { Home, Page, Sidebar, Navbar, NavLink, AboutMe },
   data () {
     return {
       isSidebarOpen: false
