@@ -7,7 +7,7 @@
       </h1>
     </div>
     <div class="personalities" v-if="data.personalities && data.personalities.length">
-      <div class="personality" v-for="personality in data.personalities">
+      <div class="personality items" v-for="personality in data.personalities">
         <h2>{{ personality.title }}</h2>
         <ul v-if="personality.details && personality.details.length">
           <li v-for="detail in personality.details">{{ detail }}</li>
@@ -80,26 +80,27 @@ export default {
       flex-grow 1
       flex-basis 30%
       max-width 30%
-      h2
-        font-size 1.4rem
-        font-weight 500
-        border-bottom none
-        padding-bottom 0
-        color lighten($textColor, 10%)
-      ul
-        color lighten($textColor, 25%)
-        margin 1rem 0
-        padding 0
-      li
-        list-style none
-        display inline-block
-        margin 0 .5rem 0 0
-      li:after
-        content "/"
-        margin 0 0 0 .5rem
-      ul li:last-child
-        margin 0
-      ul li:last-child:after
-        content ""
-        margin 0
+  .items
+    h2
+      font-size 1.4rem
+      font-weight 500
+      border-bottom none
+      padding-bottom 0
+      color lighten($textColor, 10%)
+    ul
+      color lighten($textColor, 25%)
+      margin 1rem 0
+      padding 0
+    li
+      list-style none
+      display inline-block
+      margin 0 .5rem 0 0
+    li:after
+      content "/"
+      margin 0 0 0 .5rem
+    ul li:last-child
+      margin 0
+    ul li:last-child:after
+      content ""
+      margin 0
 </style>
