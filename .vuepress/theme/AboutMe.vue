@@ -93,5 +93,5 @@ export default {
       li
         list-style none
         display inline-block
-        margin 0 .5rem
+        margin 0 1rem 0 0
 </style>
