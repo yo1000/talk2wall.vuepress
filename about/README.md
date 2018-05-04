@@ -1,7 +1,6 @@
 ---
 home: true
 title: About me
-#heroImage: /business.svg
 layout: AboutMe
 profileImage: /about/profile.svg
 personalities:
@@ -19,7 +18,6 @@ personalities:
   - "Spock"
   - "Spek"
   - "AWS"
-  - "Ubuntu"
   - "Photoshop"
   - "Illustrator"
 - title: "エディタ"
@@ -53,4 +51,9 @@ vue.js / jQuery / Windows Forms / WPF / Smarty / Synfony2 / Flex /
 Bootstrap / Materialize
 
 ### OS・サーバー・データベース
+
+Ubuntu / CentOS / Windows Server 2003, 2008 / 
+Tomcat 5, 6, 7, 8 / Nginx / Apache / 
+Postgresql / MySQL / DB2 / SQL Server / H2 / HSQL / MongoDB
+
 
