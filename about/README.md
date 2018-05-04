@@ -52,8 +52,9 @@ Bootstrap / Materialize
 
 ### OS・サーバー・データベース
 
-Ubuntu / CentOS / Windows Server 2003, 2008 / 
+Ubuntu / CentOS 5, 6, 7 / Windows Server 2003, 2008 / 
 Tomcat 5, 6, 7, 8 / Nginx / Apache / 
 Postgresql / MySQL / DB2 / SQL Server / H2 / HSQL / MongoDB
 
 
+## 
