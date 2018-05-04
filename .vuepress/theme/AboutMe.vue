@@ -93,5 +93,13 @@ export default {
       li
         list-style none
         display inline-block
-        margin 0 1rem 0 0
+        margin 0 .5rem 0 0
+      li:after
+        content "/"
+        margin 0 0 0 .5rem
+      ul li:last-child
+        margin 0
+      ul li:last-child:after
+        content ""
+        margin 0
 </style>
