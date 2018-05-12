@@ -11,7 +11,7 @@
     </ul>
     <h1>Posts<span v-if="tagFirstQuery">#{{ tagFirstQuery }}</span></h1>
     <ul class="items">
-      <li class="item" v-for="page in $site.pages" v-if="/^\/posts\/.+/.test(page.path)">
+      <li class="item" v-for="page in pagesByTagFirstQuery" v-if="/^\/posts\/.+/.test(page.path)">
         <a :href="page.path">{{ page.title }}</a>
         <span>..</span>
         <a v-for="tag in page.frontmatter.tags" :href="'/posts/?tag=' + tag">#{{ tag }}</a>
