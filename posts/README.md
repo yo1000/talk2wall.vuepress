@@ -1,6 +1,4 @@
 ---
-home: true
-title: Posts
+layout: Posts
 heroImage: /says-who.svg
 ---
-
