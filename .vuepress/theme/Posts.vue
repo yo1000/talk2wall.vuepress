@@ -72,30 +72,6 @@ export default {
         if (typeof tags !== typeof []) return tags
         return tags.length >= 1
       })
-    },
-    // posts () {
-    //   fs.readdir('/posts', (err, files) => {
-    //     if (err) throw err
-    //     const mds = files.filter((file) => {
-    //       return fs.statSync(file).isFile() && /.*\.md$/.test(file)
-    //     })
-
-
-    //     console.log(fileList)
-    //   })
-
-    //   return resolveSidebarItems(
-    //     this.$page,
-    //     this.$route,
-    //     this.$site,
-    //     this.$localePath
-    //     )
-    // },
-    actionLink () {
-      return {
-        link: this.data.actionLink,
-        text: this.data.actionText
-      }
     }
   }
 }
