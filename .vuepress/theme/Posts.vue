@@ -62,6 +62,8 @@ export default {
     },
     pagesByTagFirstQuery () {
       const tagQuery = this.tagFirstQuery
+      if (!tagQuery) return this.$site.pages
+
       return this.$site.pages.filter(page => {
         if (!page.frontmatter.tags) return false
         if (typeof page.frontmatter.tags !== typeof []) return page.frontmatter.tags === tagQuery
