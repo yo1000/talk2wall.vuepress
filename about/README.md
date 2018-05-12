@@ -22,6 +22,7 @@ personalities:
 - title: "エディタ"
   details:
   - "IntelliJ IDEA"
+  - "Visual Studio Code"
   - "Sublime Text"
   - "Typora"
   - "NOBLE NOTE RULED B5"
