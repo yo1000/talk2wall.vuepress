@@ -5,16 +5,14 @@
     </div>
     <h1>Tags</h1>
     <ul class="tags">
-      <li class="tag" v-for="tag in tags">
-        <a :href="'/posts/?tag=' + tag">#{{ tag }}</a>
+      <li class="tag" v-for="tag in tagsSorted">
+        <a :href="'/posts/?tag=' + tag.name">#{{ tag.name }}({{ tag.value }})</a>
       </li>
     </ul>
     <h1>Posts<span v-if="tagFirstQuery">#{{ tagFirstQuery }}</span></h1>
     <ul class="items">
-      <li class="item" v-for="page in pagesByTagFirstQuery" v-if="/^\/posts\/.+/.test(page.path)">
-        <a :href="page.path">{{ page.title }}</a>
-        <span>..</span>
-        <a v-for="tag in page.frontmatter.tags" :href="'/posts/?tag=' + tag">#{{ tag }}</a>
+      <li class="item" v-for="page in pagesSortedByTagFirstQuery" v-if="/^\/posts\/.+/.test(page.path)">
+        {{ page.frontmatter.date.toLocaleDateString({ ca:'iso8601' }, { timeZone:"Asia/Tokyo", year:"numeric", month:"2-digit", day:"2-digit" }) }} <a :href="page.path">{{ page.title }}</a>
       </li>
     </ul>
     <Content custom/>
@@ -26,10 +24,8 @@
 
 <script>
 import NavLink from './NavLink.vue'
-
 export default {
   components: { NavLink },
-  props: ['sidebarItems'],
   computed: {
     data () {
       return this.$page.frontmatter
@@ -46,7 +42,7 @@ export default {
       }
     },
     tags () {
-      return this.$site.pages.filter(page => {
+      const tagsAll = this.$site.pages.filter(page => {
         return page.frontmatter.tags
       }).map(page => {
         return page.frontmatter.tags
@@ -56,15 +52,60 @@ export default {
         } else {
           return acc.concat(tags)
         }
-      }, []).filter((elm, i, array) => {
-            return array.indexOf(elm) === i;
+      }, [])
+      
+      const tagsSummary = {}
+      for (let i = 0; i < tagsAll.length; i++) {
+        const t = tagsAll[i]
+        if (!tagsSummary[t]) tagsSummary[t] = 0
+        tagsSummary[t]++
+      }
+
+      const tags = []
+      for (let key in tagsSummary) {
+        tags.push({
+          name: key,
+          value: tagsSummary[key]
+        })
+      }
+
+      return tags
+    },
+    tagsSorted () {
+      return this.tags.sort((a, b) => {
+        return b.value - a.value
       })
     },
-    pagesByTagFirstQuery () {
+    pages () {
+      const d = new Date()
+      d.setTime(0)
+      const dateType = typeof d
+      return this.$site.pages.map(page => {
+        if (!page.frontmatter.date) {
+          page.frontmatter['date'] = d
+          return page
+        }
+        else if (typeof page.frontmatter.date !== dateType) {
+          page.frontmatter.date = new Date(page.frontmatter.date)
+        }
+        return page
+      })
+    },
+    pagesSorted () {
+      return this.pages.sort((a, b) => {
+        const aTime = a.frontmatter.date.getTime()
+        const bTime = b.frontmatter.date.getTime()
+        if (aTime == bTime) return 0
+        if (aTime == 0) return 1
+        if (bTime == 0) return -1
+        return aTime - bTime
+      })
+    },
+    pagesSortedByTagFirstQuery () {
       const tagQuery = this.tagFirstQuery
-      if (!tagQuery) return this.$site.pages
+      if (!tagQuery) return this.pagesSorted
 
-      return this.$site.pages.filter(page => {
+      return this.pagesSorted.filter(page => {
         if (!page.frontmatter.tags) return false
         if (typeof page.frontmatter.tags !== typeof []) return page.frontmatter.tags === tagQuery
         
