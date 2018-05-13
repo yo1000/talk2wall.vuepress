@@ -4,5 +4,8 @@
   "main": "index.js",
   "repository": "https://yo1000@github.com/yo1000/talk2wall.vuepress.git",
   "author": "yo1000 <yoichi.kikuchi.aug@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "build": "vuepress build ."
+  }
 }
