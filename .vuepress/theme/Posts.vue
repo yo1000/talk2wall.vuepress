@@ -5,6 +5,9 @@
     </div>
     <h1>Tags</h1>
     <ul class="tags">
+      <li class="tag">
+        <a href="/posts/">all(*)</a>
+      </li>
       <li class="tag" v-for="tag in tagsSorted">
         <a :href="'/posts/?tag=' + tag.name">#{{ tag.name }}({{ tag.value }})</a>
       </li>
