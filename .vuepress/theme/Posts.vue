@@ -101,7 +101,7 @@ export default {
         if (aTime == bTime) return 0
         if (aTime == 0) return 1
         if (bTime == 0) return -1
-        return aTime - bTime
+        return bTime - aTime
       })
     },
     pagesSortedByTagFirstQuery () {
