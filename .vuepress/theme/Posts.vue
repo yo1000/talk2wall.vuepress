@@ -14,8 +14,8 @@
     </ul>
     <h1>Posts<span v-if="tagFirstQuery">#{{ tagFirstQuery }}</span></h1>
     <ul class="items">
-      <li class="item" v-for="page in pagesSortedByTagFirstQuery" v-if="/^\/posts\/.+/.test(page.path)">
-        {{ page.frontmatter.date.toLocaleDateString({ ca:'iso8601' }, { timeZone:"Asia/Tokyo", year:"numeric", month:"2-digit", day:"2-digit" }) }} <a :href="page.path">{{ page.title }}</a>
+      <li class="item" v-for="page in pagesSortedByTagFirstQuery">
+        <code>{{ page.frontmatter.dateString }}</code><a :href="page.path">{{ page.title }}</a>
       </li>
     </ul>
     <Content custom/>
@@ -83,14 +83,20 @@ export default {
       const d = new Date()
       d.setTime(0)
       const dateType = typeof d
-      return this.$site.pages.map(page => {
+      return this.$site.pages.filter(page => {
+        return /^\/posts\/.+/.test(page.path)
+      }).map(page => {
         if (!page.frontmatter.date) {
           page.frontmatter['date'] = d
+          page.frontmatter['dateString'] = '----/--/--'
           return page
         }
         else if (typeof page.frontmatter.date !== dateType) {
           page.frontmatter.date = new Date(page.frontmatter.date)
         }
+
+        page.frontmatter['dateString'] = page.frontmatter.date.toLocaleDateString(
+          { ca:'iso8601' }, { timeZone:"Asia/Tokyo", year:"numeric", month:"2-digit", day:"2-digit" })
         return page
       })
     },
@@ -173,6 +179,10 @@ export default {
       display inline-block
     .item
       display list-item
+      code
+        display inline-block
+        margin 0 .5rem 0 0
+        font-size .95rem
   .feature
     flex-grow 1
     flex-basis 30%
@@ -197,6 +207,11 @@ export default {
     .items,
     .tags
       flex-direction column
+      .item
+        code
+          display inline-block
+          margin 0 .5rem 0 0
+          font-size .95rem
     .feature
       max-width 100%
       padding 0 2.5rem

@@ -3,7 +3,7 @@
     <div class="title">
       <h1>{{ title }}</h1>
       <div class="meta">
-        <em>posted at {{ date.toLocaleDateString({ ca:'iso8601' }, { timeZone:"Asia/Tokyo", year:"numeric", month:"2-digit", day:"2-digit" }) }}</em>
+        <em>posted at {{ dateString }}</em>
         <ul class="tags">
           <li class="tag" v-for="t in $page.frontmatter.tags">
             <a :href="'/posts/?tag=' + t">#{{ t }}</a>
@@ -56,6 +56,11 @@ export default {
       if (!pageDate) return d
       if (typeof pageDate === dateType) return pageDate
       return new Date(pageDate)
+    },
+    dateString() {
+      if (!this.date.getTime()) return '----/--/--'
+      return this.date.toLocaleDateString({ ca:'iso8601' },
+        { timeZone:"Asia/Tokyo", year:"numeric", month:"2-digit", day:"2-digit" })
     },
     prev () {
       const prev = this.$page.frontmatter.prev
