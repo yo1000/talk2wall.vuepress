@@ -6,6 +6,7 @@
   "author": "yo1000 <yoichi.kikuchi.aug@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
   },
   "devDependencies": {
