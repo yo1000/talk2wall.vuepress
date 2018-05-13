@@ -2,7 +2,7 @@
   "name": "talk2wall",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://yo1000@github.com/yo1000/talk2wall.vuepress.git",
+  "repository": "https://github.com/yo1000/talk2wall.vuepress.git",
   "author": "yo1000 <yoichi.kikuchi.aug@gmail.com>",
   "license": "MIT",
   "scripts": {
