@@ -1,5 +1,16 @@
 <template>
   <div class="page">
+    <div class="title">
+      <h1>{{ title }}</h1>
+      <div class="meta">
+        <em>posted at {{ date.toLocaleDateString({ ca:'iso8601' }, { timeZone:"Asia/Tokyo", year:"numeric", month:"2-digit", day:"2-digit" }) }}</em>
+        <ul class="tags">
+          <li class="tag" v-for="t in $page.frontmatter.tags">
+            <a :href="'/posts/?tag=' + t">#{{ t }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
     <Content :custom="false"/>
     <div class="content edit-link" v-if="editLink">
       <a :href="editLink" target="_blank" rel="noopener noreferrer">{{ editLinkText }}</a>
@@ -34,6 +45,18 @@ export default {
   components: { OutboundLink },
   props: ['sidebarItems'],
   computed: {
+    title () {
+      return this.$page.frontmatter.title || ''
+    },
+    date () {
+      const d = new Date()
+      d.setTime(0)
+      const dateType = typeof d
+      const pageDate = this.$page.frontmatter.date
+      if (!pageDate) return d
+      if (typeof pageDate === dateType) return pageDate
+      return new Date(pageDate)
+    },
     prev () {
       const prev = this.$page.frontmatter.prev
       if (prev === false) {
@@ -123,7 +146,37 @@ function find (page, items, offset) {
 
 .page
   padding-bottom 2rem
-
+  .content:not(.custom)
+    h2:first-child
+      margin-top -6rem
+    p:first-child
+      margin-top -2rem
+  .title
+    padding: 2rem 2.5rem 0 2.5rem
+    margin: 0 auto
+    max-width: 740px
+    h1
+      padding-top: 4.6rem;
+      margin-top: -1.5rem;
+      margin-bottom: 0;
+      padding-bottom: 0.3rem;
+  .meta
+    margin 1rem 0 0 0
+    padding 0 0 2rem 0
+    .tags
+      margin 0
+      padding 0
+      flex-wrap wrap
+      align-items flex-start
+      align-content strech
+      justify-content space-between
+      li
+        list-style none
+        a, span
+          display inline-block
+          margin-right .5rem
+      .tag
+        display inline-block
 .edit-link.content
   padding-top 0 !important
   a
