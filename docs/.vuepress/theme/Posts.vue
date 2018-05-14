@@ -76,7 +76,11 @@ export default {
     },
     tagsSorted () {
       return this.tags.sort((a, b) => {
-        return b.value - a.value
+        if (a.value < b.value) return 1
+        if (a.value > b.value) return -1
+        if (a.name < b.name) return -1
+        if (a.name > b.name) return 1
+        return 0
       })
     },
     pages () {
@@ -104,10 +108,21 @@ export default {
       return this.pages.sort((a, b) => {
         const aTime = a.frontmatter.date.getTime()
         const bTime = b.frontmatter.date.getTime()
-        if (aTime == bTime) return 0
-        if (aTime == 0) return 1
-        if (bTime == 0) return -1
-        return bTime - aTime
+        if (aTime < bTime) return 1
+        if (aTime > bTime) return -1
+
+        const aTitle = a.frontmatter.title
+        const bTitle = b.frontmatter.title
+        if (aTitle && !bTitle) return -1
+        if (!aTitle && bTitle) return 1
+        if (aTitle < bTitle) return -1
+        if (aTitle > bTitle) return 1
+
+        const aPath = a.path
+        const bPath = b.path
+        if (aPath < bPath) return -1
+        if (aPath > bPath) return 1
+        return 0
       })
     },
     pagesSortedByTagFirstQuery () {
