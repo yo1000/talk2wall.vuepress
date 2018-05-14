@@ -12,9 +12,9 @@
         <a :href="'/posts/?tag=' + tag.name">#{{ tag.name }}({{ tag.value }})</a>
       </li>
     </ul>
-    <h1>Posts<span v-if="tagFirstQuery">#{{ tagFirstQuery }}</span></h1>
-    <ul class="items">
-      <li class="item" v-for="page in pagesSortedByTagFirstQuery">
+    <h1>Posts<span id="activeTag"></span></h1>
+    <ul id="items" class="items">
+      <li :class="'item ' + page.tagsString" v-for="page in pagesSorted">
         <code>{{ page.frontmatter.dateString }}</code><a :href="page.path">{{ page.title }}</a>
       </li>
     </ul>
@@ -22,6 +22,7 @@
     <div class="footer" v-if="$site.themeConfig.footer">
       {{ $site.themeConfig.footer }}
     </div>
+    <script src="/posts/filter.js"></script>
   </div>
 </template>
 
@@ -90,6 +91,11 @@ export default {
       return this.$site.pages.filter(page => {
         return /^\/posts\/.+/.test(page.path)
       }).map(page => {
+        page['tagsString'] = page.frontmatter.tags.reduce((acc, t) => {
+          if (acc && acc.length > 0) acc += ' '
+          return acc + 'TAG_' + t.replace(/ /g, '-')
+        }, '')
+
         if (!page.frontmatter.date) {
           page.frontmatter['date'] = d
           page.frontmatter['dateString'] = '----/--/--'
@@ -123,21 +129,6 @@ export default {
         if (aPath < bPath) return -1
         if (aPath > bPath) return 1
         return 0
-      })
-    },
-    pagesSortedByTagFirstQuery () {
-      const tagQuery = this.tagFirstQuery
-      if (!tagQuery) return this.pagesSorted
-
-      return this.pagesSorted.filter(page => {
-        if (!page.frontmatter.tags) return false
-        if (typeof page.frontmatter.tags !== typeof []) return page.frontmatter.tags === tagQuery
-        
-        const tags = page.frontmatter.tags.filter(tag => {
-          return tag === tagQuery
-        })
-        if (typeof tags !== typeof []) return tags
-        return tags.length >= 1
       })
     }
   }
@@ -193,7 +184,7 @@ export default {
     .tag
       display inline-block
     .item
-      display list-item
+      display none
       code
         display inline-block
         margin 0 .5rem 0 0
@@ -223,6 +214,7 @@ export default {
     .tags
       flex-direction column
       .item
+        display none
         code
           display inline-block
           margin 0 .5rem 0 0
