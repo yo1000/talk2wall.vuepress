@@ -201,7 +201,4 @@ function updateMetaTags (meta, current) {
   text-align center
   color lighten($textColor, 25%)
   background-color $bgColor
-
-.sidebar
-  z-index -10
 </style>
