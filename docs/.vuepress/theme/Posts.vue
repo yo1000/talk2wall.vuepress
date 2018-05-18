@@ -22,7 +22,7 @@
     <div class="footer" v-if="$site.themeConfig.footer">
       {{ $site.themeConfig.footer }}
     </div>
-    <LoadScript :src="'/posts/filter.js'"/>
+    <LoadScript :src="'/posts/js/filter.js'"/>
   </div>
 </template>
 
