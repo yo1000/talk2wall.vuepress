@@ -22,14 +22,32 @@
     <div class="footer" v-if="$site.themeConfig.footer">
       {{ $site.themeConfig.footer }}
     </div>
-    <script src="/posts/filter.js"></script>
+    <LoadScript :src="'/posts/filter.js'"/>
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
 import NavLink from './NavLink.vue'
 export default {
   components: { NavLink },
+  created () {
+    Vue.component('LoadScript', {
+      render: function (createElement) {
+        return createElement('script', {
+          attrs: {
+            src: this.src
+          }
+        })
+      },
+      props: {
+        src: {
+          type: String,
+          required: true
+        }
+      }
+    })
+  },
   computed: {
     data () {
       return this.$page.frontmatter
