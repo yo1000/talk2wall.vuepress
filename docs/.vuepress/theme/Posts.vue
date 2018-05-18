@@ -22,7 +22,6 @@
     <div class="footer" v-if="$site.themeConfig.footer">
       {{ $site.themeConfig.footer }}
     </div>
-    <script src="/posts/filter.js"></script>
   </div>
 </template>
 
@@ -30,6 +29,11 @@
 import NavLink from './NavLink.vue'
 export default {
   components: { NavLink },
+  created() {
+    const scriptTag = document.createElement('script')
+    scriptTag.setAttribute('src',"/posts/filter.js")
+    document.body.appendChild(scriptTag);
+  },
   computed: {
     data () {
       return this.$page.frontmatter
