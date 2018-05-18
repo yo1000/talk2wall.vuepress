@@ -52,7 +52,7 @@ $ npm -v
 過去のポストで掲示しているものと同じですが、全体を把握するのに役立つため再掲します。
 認証認可フローの概要図は、以下のとおりです。
 
-![kc-resource-flow.svg](/res/site/img/keycloak/kc-resource-flow.svg)
+![img/2017-12-18_kc-resource-flow.svg](img/2017-12-18_kc-resource-flow.svg)
 
 各アクターの役割は、以下のとおりです。
 
@@ -455,10 +455,10 @@ Hit CTRL-C to stop the server
 ```
 
 初回表示では、Keycloak へリダイレクトされ、ログインを要求されます。<br>
-![kc-resource-demo-1.png](/res/site/img/keycloak/kc-resource-demo-1.png)
+![img/2017-12-18_kc-resource-demo-1.png](img/2017-12-18_kc-resource-demo-1.png)
 
 ログインすると、画面にユーザー名が表示され、ボタンをクリックすると要求に応じたメッセージが表示されます。<br>
-![kc-resource-demo-3.png](/res/site/img/keycloak/kc-resource-demo-3.png)
+![img/2018-01-07_kc-resource-demo-3.png](img/2018-01-07_kc-resource-demo-3.png)
 
 ## 参考
 
