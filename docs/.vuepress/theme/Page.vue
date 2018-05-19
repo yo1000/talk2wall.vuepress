@@ -3,7 +3,7 @@
     <div class="title">
       <h1>{{ title }}</h1>
       <div class="meta">
-        <em>posted at {{ dateString }}</em>
+        <code>Posted at {{ dateString }}</code>
         <ul class="tags">
           <li class="tag" v-for="t in $page.frontmatter.tags">
             <a :href="'/posts/?tag=' + t">#{{ t }}</a>
@@ -168,6 +168,8 @@ function find (page, items, offset) {
   .meta
     margin 1rem 0 0 0
     padding 0 0 2rem 0
+    code
+      font-size .95rem
     .tags
       margin 0
       padding 0
