@@ -1,9 +1,17 @@
 export default ({
-  Vue, // the version of Vue being used in the VuePress app
-  options, // the options for the root Vue instance
-  router, // the router instance for the app
-  siteData // site metadata
+  Vue, 
+  options,
+  router,
+  siteData
 }) => {
+  try {
+    // Dev only throw reference error
+    global
+  } catch (e) {
+    // Skip in Dev
+    return
+  }
+
   const path = require('path')
   const fs = require('fs-extra')
   const RSS = require('rss')
