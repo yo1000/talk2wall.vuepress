@@ -3,6 +3,9 @@ module.exports = {
   description: 'Incurable chūni',
   base: '/',
   ga: 'UA-119554407-1',
+  head: [
+    ['link', { rel: 'alternate', type: 'application/rss+xml', href: '/rss.xml', title: 'talk2wall | latest posts feed' }]
+  ],
   sidebar: 'auto',
   themeConfig: {
     nav: [
@@ -20,7 +23,7 @@ module.exports = {
   },
   locales: {
     '/': {
-      lang: 'ja-JP',
+      lang: 'ja-JP'
     }
   }
 }
