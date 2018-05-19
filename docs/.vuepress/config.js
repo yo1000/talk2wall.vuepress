@@ -8,6 +8,7 @@ module.exports = {
   ],
   sidebar: 'auto',
   themeConfig: {
+    repo: 'yo1000/talk2wall.vuepress',
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Posts', link: '/posts/' },
