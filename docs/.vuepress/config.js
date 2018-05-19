@@ -2,6 +2,7 @@ module.exports = {
   title: 'talk2wall',
   description: 'Incurable chūni',
   base: '/',
+  ga: 'UA-119554407-1',
   sidebar: 'auto',
   themeConfig: {
     nav: [
