@@ -13,5 +13,8 @@
   "devDependencies": {
     "http-server": "^0.11.1",
     "vuepress": "^0.8.4"
+  },
+  "dependencies": {
+    "rss": "^1.2.2"
   }
 }
