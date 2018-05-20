@@ -15,7 +15,7 @@
     <h1>Posts<span id="activeTag"></span></h1>
     <ul id="items" class="items">
       <li :class="'item ' + page.tagsString" v-for="page in pagesSorted">
-        <code>{{ page.frontmatter.dateString }}</code><a :href="page.path">{{ page.title }}</a>
+        <span class="date">{{ page.frontmatter.dateString }}</span><a :href="page.path">{{ page.title }}</a>
       </li>
     </ul>
     <Content custom/>
@@ -203,10 +203,10 @@ export default {
       display inline-block
     .item
       display none
-      code
+      .date
         display inline-block
-        margin 0 .5rem 0 0
-        font-size .95rem
+        width: 6rem
+        margin 0 .25rem 0 0
   .feature
     flex-grow 1
     flex-basis 30%

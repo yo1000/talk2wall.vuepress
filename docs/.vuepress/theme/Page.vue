@@ -3,7 +3,7 @@
     <div class="title">
       <h1>{{ title }}</h1>
       <div class="meta">
-        <code>Posted at {{ dateString }}</code>
+        <span class="date">Posted at {{ dateString }}</span>
         <ul class="tags">
           <li class="tag" v-for="t in $page.frontmatter.tags">
             <a :href="'/posts/?tag=' + t">#{{ t }}</a>
