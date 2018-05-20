@@ -144,5 +144,5 @@ export default ({
 
 と、こんな具合でRSSフィードの作成ができました。
 
-生成されたRSSフィードはこちら。 http://www.yo1000.com/rs.xml
+生成されたRSSフィードはこちら。 http://www.yo1000.com/rss.xml
 
