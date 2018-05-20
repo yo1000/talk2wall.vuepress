@@ -34,14 +34,11 @@ export default ({
   }).map(page => {
     if (!page.frontmatter.date) {
       page.frontmatter['date'] = d
-      page.frontmatter['dateString'] = '----/--/--'
       return page
     }
     if (typeof page.frontmatter.date !== dateType) {
       page.frontmatter.date = new Date(page.frontmatter.date)
     }
-    page.frontmatter['dateString'] = page.frontmatter.date.toLocaleDateString(
-        { ca:'iso8601' }, { timeZone:"Asia/Tokyo", year:"numeric", month:"2-digit", day:"2-digit" })
     return page
   }).sort((a, b) => {
     const aTime = a.frontmatter.date.getTime()
