@@ -34,7 +34,7 @@ RSSフィード出力のために必要な機能は以下です。
 
 VuePressでは、通常のコンテンツはHTMLとして生成されてしまうため、テーマのカスタマイズ等では今回の要件を達成することができません。そこで今回は、VuePressに用意されている[App Level Enhancements](https://vuepress.vuejs.org/guide/basic-config.html#app-level-enhancements)を利用します。
 
-この拡張ポイントでは、以下4つのパラメタを受け取ることができます。
+App Level Enhancementsは、 `.vuepress/enhanceApp.js` を作成することで利用でき、この拡張ポイントでは、以下4つのパラメーターを受け取ることができます。
 
 - Vue
 - options
@@ -43,7 +43,7 @@ VuePressでは、通常のコンテンツはHTMLとして生成されてしま�
 
 このうち、 `siteData` には、サイト内の全てのコンテンツのパース後の内容が保持されているため、これを利用することで、RSSフィードに必要な情報の一式を取り出すことができます。
 
-こちらについても詳細については、このサイトで使用している [`enhanceApp.js`](https://github.com/yo1000/talk2wall.vuepress/blob/master/docs/.vuepress/enhanceApp.js) を確認するのが早いですが、簡単にどんなことをしているのかを紹介してみます。
+こちらも詳細については、このサイトで使用している [`enhanceApp.js`](https://github.com/yo1000/talk2wall.vuepress/blob/master/docs/.vuepress/enhanceApp.js) を確認するのが早いですが、簡単にどんなことをしているのかを紹介してみます。
 
 ```javascript
 export default ({
