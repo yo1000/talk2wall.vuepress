@@ -1,8 +1,8 @@
 ---
-title: IFTTT Test
-date: 2018-05-20T20:00:00+09:00
+title: IFTTT Test Update
+date: 2018-05-20T21:00:00+09:00
 tags:
 - ifttt
 ---
 
-IFTTT Test
+IFTTT Test Update
