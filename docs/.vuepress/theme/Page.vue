@@ -184,6 +184,10 @@ function find (page, items, offset) {
           margin-right .5rem
       .tag
         display inline-block
+  img
+    width: 90%
+    padding 1rem
+    border .5rem $borderColor solid
 .edit-link.content
   padding-top 0 !important
   a
