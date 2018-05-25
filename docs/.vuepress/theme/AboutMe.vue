@@ -103,4 +103,39 @@ export default {
     ul li:last-child:after
       content ""
       margin 0
+@media (max-width: $MQMobile)
+  .about-me
+    padding-left 1.5rem
+    padding-right 1.5rem
+    .personalities
+      flex-direction column
+      padding-bottom: 0
+      .personality
+        max-width 100%
+        padding 0 2.5rem
+      .personality:last-child
+        padding-bottom 1rem
+        margin-bottom 1.2rem
+        border-bottom 1px solid $borderColor
+    .content.custom
+      padding 0 2.5rem
+      h2
+        font-size 1.4rem
+        font-weight 500
+        border-bottom none
+        padding-bottom 0
+        color lighten($textColor, 10%)
+      h3
+        font-size 1.1rem
+        font-weight 500
+        border-bottom none
+        padding-bottom 0
+        color lighten($textColor, 10%)
+@media (max-width: $MQMobileNarrow)
+  .about-me
+    padding-left 1.5rem
+    padding-right 1.5rem
+    .personality
+      h2
+        font-size 1.25rem
 </style>
