@@ -154,7 +154,7 @@ function find (page, items, offset) {
   .content:not(.custom)
     h2:first-child
       margin-top -6rem
-    p:first-child
+    > p:first-child
       margin-top -2rem
   .title
     padding: 2rem 2.5rem 0 2.5rem
