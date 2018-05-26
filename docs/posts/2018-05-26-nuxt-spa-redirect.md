@@ -46,7 +46,7 @@ https://github.com/yo1000/nuxt-external-redirect
 
 - Nuxt.js 1.4.0
 - SPAモード
-- middlewareでリダイレクトする
+- `middleware` でリダイレクトする
 - 公式の `redirect` 関数以外を使用してリダイレクト
   - `window.location.href` , `window.location.replace` 等を使用する 
 
