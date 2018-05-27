@@ -270,5 +270,5 @@ export default {
       .date
         display none
       a
-        max-width: 100%
+        max-width 100%
 </style>

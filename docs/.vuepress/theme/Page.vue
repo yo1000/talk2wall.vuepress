@@ -157,14 +157,14 @@ function find (page, items, offset) {
     > p:first-child
       margin-top -2rem
   .title
-    padding: 2rem 2.5rem 0 2.5rem
-    margin: 0 auto
-    max-width: 740px
+    padding 2rem 2.5rem 0 2.5rem
+    margin 0 auto
+    max-width 740px
     h1
-      padding-top: 4.6rem;
-      margin-top: -1.5rem;
-      margin-bottom: 0;
-      padding-bottom: 0.3rem;
+      padding-top 4.6rem
+      margin-top -1.5rem
+      margin-bottom 0
+      padding-bottom 0.3rem
   .meta
     margin 1rem 0 0 0
     padding 0 0 2rem 0
