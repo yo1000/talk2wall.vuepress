@@ -120,3 +120,21 @@ export default function() {
 今回の検証に使ったコードはリポジトリにまとめてあるので、再現確認をしてみたい場合は以下をどうぞ。<br>
 https://github.com/yo1000/nuxt-external-redirect
 
+
+
+## 後日談
+
+この一件、同僚が、なぜ最終的に `Promise` による待機処理が除去されたのか疑問に感じ、 [公式フォーラムで質問](https://nuxtjs.cmty.io/clarkdo/hare/issues/c18) してくれていました。結果、ついた回答としては、以下のようなものでした。
+
+> You could use `serverMiddleware` or [nuxt-redirect](https://github.com/nuxt-community/redirect-module) to help you out :)
+
+これらはURLに対して、別の内部URLを与えるもののようで、これによってリダイレクト時に問題の発生しない状態 (公式 `redirect` 関数を使用したサイト内遷移) を作り出してやるのが、公式としてのおすすめのリダイレクト方法、ということのようです。
+
+以上のことから、リダイレクトを行う場合は、状況に合わせて以下のような対応を行うのが良いでしょう。
+
+- 公式 `redirect` 関数によるリダイレクト
+  - 内部URLへ遷移: そのまま遷移
+  - 外部URLへ遷移:  `serverMiddleware` や [nuxt-redirect](https://github.com/nuxt-community/redirect-module) を使用して内部URLを与えて遷移
+- その他の方法でリダイレクト (ライブラリなどを使用していて避けられない場合)
+  - リダイレクト後に `Promise` を使用して完了を待機
+
