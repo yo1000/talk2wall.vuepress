@@ -208,7 +208,7 @@ export default {
         width: 6rem
         margin 0 .25rem 0 0
       a
-        max-width: 85%
+        max-width: 83%
         overflow hidden
         text-overflow ellipsis
         white-space nowrap
@@ -246,7 +246,7 @@ export default {
       max-width 100%
       padding 0 2.5rem
     .items .item a
-      max-width: 75%
+      max-width: 69%
 
 @media (max-width: $MQMobileNarrow)
   .posts
@@ -266,6 +266,9 @@ export default {
     .feature
       h2
         font-size 1.25rem
-    .items .item a
-      max-width: 65%
+    .items .item
+      .date
+        display none
+      a
+        max-width: 100%
 </style>
