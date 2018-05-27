@@ -199,14 +199,19 @@ export default {
       a, span
         display inline-block
         margin-right .5rem
+        vertical-align middle
     .tag
       display inline-block
     .item
       display none
       .date
-        display inline-block
         width: 6rem
         margin 0 .25rem 0 0
+      a
+        max-width: 85%
+        overflow hidden
+        text-overflow ellipsis
+        white-space nowrap
   .feature
     flex-grow 1
     flex-basis 30%
@@ -240,11 +245,12 @@ export default {
     .feature
       max-width 100%
       padding 0 2.5rem
+    .items .item a
+      max-width: 75%
 
 @media (max-width: $MQMobileNarrow)
   .posts
-    padding-left 1.5rem
-    padding-right 1.5rem
+    padding 2rem 2rem 0 2rem
     .hero
       img
         max-height 210px
@@ -260,4 +266,6 @@ export default {
     .feature
       h2
         font-size 1.25rem
+    .items .item a
+      max-width: 65%
 </style>

@@ -193,7 +193,6 @@ function find (page, items, offset) {
   a
     color lighten($textColor, 25%)
     margin-right 0.25rem
-
 .page-nav.content
   padding-top 1rem !important
   padding-bottom 0 !important
@@ -204,4 +203,11 @@ function find (page, items, offset) {
     padding-top 1rem
   .next
     float right
+@media (max-width: $MQNarrow)
+  .page
+    .title
+      padding: 2rem 2rem 0 2rem
+    .content:not(.custom)
+      padding 2rem
+
 </style>
