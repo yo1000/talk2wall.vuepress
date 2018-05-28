@@ -130,6 +130,44 @@ https://github.com/yo1000/nuxt-external-redirect
 
 これらはURLに対して、別の内部URLを与えるもののようで、これによってリダイレクト時に問題の発生しない状態 (公式 `redirect` 関数を使用したサイト内遷移) を作り出してやるのが、公式としてのおすすめのリダイレクト方法、ということのようです。
 
+
+
+### nuxt-redirect
+
+どのような設定をすればよいか、例を残しておきます。
+
+はじめに、 `@nuxtjs/redirect-module` を依存追加します。
+
+```
+$ npm i @nuxtjs/redirect-module --save
+```
+
+次に、 `nuxt.config.js` へURLのマッピング設定を追加します。
+
+```javascript
+module.exports = {
+  // 中略
+  modules: [
+    ['@nuxtjs/redirect-module', [
+      { from: '^/redirect-in-mod', to: '/index2' },
+      { from: '^/redirect-ex-mod', to: 'https://zh.nuxtjs.org' },
+    ]],
+  ]
+}
+```
+
+最後に、 `middleware` でマッピングしたURLへリダイレクトします。
+
+```javascript
+export default function({ redirect }) {
+  redirect('/redirect-ex-mod')
+}
+```
+
+
+
+### まとめ
+
 以上のことから、リダイレクトを行う場合は、状況に合わせて以下のような対応を行うのが良いでしょう。
 
 - 公式 `redirect` 関数によるリダイレクト
