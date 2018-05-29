@@ -7,7 +7,7 @@ tags:
 - testing
 ---
 
-テストでMockitoを使っていると、 `any(Class<T>)` を使いたくなる場面は、そこそこ多いように思います。ところが、Kotlinでテストを書いているとこれが以下のようなエラーを吐いてしまって、テストが書けません。
+テストでMockitoを使っていると、 `any(Class<T>)` を使いたくなる場面は、そこそこ多いように思います。ところが、Kotlinでテストを書いていると、これを受け取ったKotlin実装のメソッドで以下のようなエラーが吐かれてしまい、テストが書けません。
 
 >  java.lang.IllegalStateException: Mockito.any(Hoge::class.java) must not be null
 
