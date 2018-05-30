@@ -9,6 +9,7 @@
             <a :href="'/posts/?tag=' + t">#{{ t }}</a>
           </li>
         </ul>
+        <TweetButton/>
       </div>
     </div>
     <Content :custom="false"/>
@@ -36,13 +37,40 @@
     </div>
   </div>
 </template>
-
 <script>
+import Vue from 'vue'
 import OutboundLink from './OutboundLink.vue'
 import { resolvePage, normalize, outboundRE, endingSlashRE } from './util'
 
 export default {
   components: { OutboundLink },
+  created () {
+    Vue.component('TweetButton', {
+      render: function (createElement) {
+        return createElement(
+          'div', {
+            attrs: {
+              style: 'margin-top: .25rem;'
+            }
+          }, [
+            createElement('a', {
+              attrs: {
+                href: 'https://twitter.com/share',
+                class: 'twitter-share-button',
+                "data-lang": 'en'
+              }
+            }),
+            createElement('script', {
+              attrs: {
+                async: '',
+                src: './js/twitter.js'
+              }
+            })
+          ]
+        )
+      }
+    })
+  },
   props: ['sidebarItems'],
   computed: {
     title () {
