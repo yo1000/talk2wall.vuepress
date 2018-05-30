@@ -9,7 +9,9 @@
             <a :href="'/posts/?tag=' + t">#{{ t }}</a>
           </li>
         </ul>
-        <TweetButton/>
+        <div class="social-buttons">
+          <TweetButton/><PocketButton/>
+        </div>
       </div>
     </div>
     <Content :custom="false"/>
@@ -50,7 +52,7 @@ export default {
         return createElement(
           'div', {
             attrs: {
-              style: 'margin-top: .25rem;'
+              class: 'tweet-button'
             }
           }, [
             createElement('a', {
@@ -64,6 +66,32 @@ export default {
               attrs: {
                 async: '',
                 src: './js/twitter.js'
+              }
+            })
+          ]
+        )
+      }
+    })
+    Vue.component('PocketButton', {
+      render: function (createElement) {
+        return createElement(
+          'div', {
+            attrs: {
+              class: 'pocket-button'
+            }
+          }, [
+            createElement('a', {
+              attrs: {
+                class: 'pocket-btn',
+                "data-pocket-label": 'pocket',
+                "data-pocket-count": 'none',
+                "data-lang": 'en'
+              }
+            }),
+            createElement('script', {
+              attrs: {
+                async: '',
+                src: './js/pocket.js'
               }
             })
           ]
@@ -212,6 +240,14 @@ function find (page, items, offset) {
           margin-right .5rem
       .tag
         display inline-block
+    .social-buttons
+      margin-top .125rem
+      .tweet-button,
+      .pocket-button
+        display:inline-block
+      .pocket-button
+        position relative
+        top 2px
   img
     width: 90%
     padding 1rem
