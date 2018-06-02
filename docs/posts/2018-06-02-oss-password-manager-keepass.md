@@ -3,6 +3,8 @@ title: OSSのパスワードマネージャKeePassはいいぞ
 date: 2018-06-02T16:00:00+09:00
 tags:
 - password manager
+- 1password
+- keepass
 ---
 
 [1Password](https://1password.com/)の課金モデル変更に伴い、サブスクリプションモデルに移行するか、[LastPass](https://www.lastpass.com/ja)に移行するかと、これからのパスワード管理について、いろいろ悩んで改めてゼロから調べ直してみたところ、[KeePass](https://keepass.info/)というのが良さそうだったのでこれに移行してみました。
