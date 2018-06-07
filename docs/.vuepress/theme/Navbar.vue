@@ -1,5 +1,5 @@
 <template>
-  <header class="navbar">
+  <header class="navbar dark">
     <SidebarButton @toggle-sidebar="$emit('toggle-sidebar')"/>
     <router-link :to="$localePath" class="home-link">
       <img class="logo"
@@ -62,6 +62,13 @@ export default {
     position absolute
     right 1.5rem
     top 0.7rem
+.navbar.dark
+  background-color $textColor
+  color $bgColor
+  .site-name,
+  .nav-links a:hover,
+  .nav-links a.router-link-active
+    color $bgColor
 
 @media (max-width: $MQMobile)
   .navbar
