@@ -189,7 +189,7 @@ export default {
   .features,
   .items,
   .tags
-    padding 1.2rem 0
+    padding 0 0 1.2rem 0
     flex-wrap wrap
     align-items flex-start
     align-content strech
