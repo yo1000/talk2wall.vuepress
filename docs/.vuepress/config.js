@@ -26,6 +26,7 @@ module.exports = {
     footer: 'Text: CC BY-NC-ND 4.0 | Code: MIT Licensed | Copyright © 2018-present yo1000',
   },
   markdown: {
+    lineNumbers: true,
     config: (md) => {
       md.options.linkify = true
     },

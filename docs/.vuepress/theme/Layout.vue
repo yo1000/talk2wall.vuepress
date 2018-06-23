@@ -25,17 +25,15 @@ import Vue from 'vue'
 import nprogress from 'nprogress'
 import Home from './Home.vue'
 import Navbar from './Navbar.vue'
-import NavLink from './NavLink.vue'
 import Page from './Page.vue'
 import Sidebar from './Sidebar.vue'
 import AboutMe from './AboutMe.vue'
 import Posts from './Posts.vue'
 
-import { pathToComponentName } from '@app/util'
 import { resolveSidebarItems } from './util'
 
 export default {
-  components: { Home, Page, Sidebar, Navbar, NavLink, AboutMe, Posts },
+  components: { Home, Page, Sidebar, Navbar, AboutMe, Posts },
   data () {
     return {
       isSidebarOpen: false
@@ -46,7 +44,11 @@ export default {
     shouldShowNavbar () {
       const { themeConfig } = this.$site
       const { frontmatter } = this.$page
-      if (frontmatter.navbar === false) return false
+      if (
+        frontmatter.navbar === false ||
+        themeConfig.navbar === false) {
+        return false
+      }
       return (
         this.$title ||
         themeConfig.logo ||
@@ -56,15 +58,11 @@ export default {
       )
     },
     shouldShowSidebar () {
-      const { themeConfig } = this.$site
       const { frontmatter } = this.$page
       return (
         !frontmatter.layout &&
         !frontmatter.home &&
-        (
-          frontmatter.sidebar !== false ||
-          themeConfig.themeConfig.sidebar !== false
-        ) &&
+        frontmatter.sidebar !== false &&
         this.sidebarItems.length
       )
     },
@@ -76,13 +74,13 @@ export default {
         this.$localePath
       )
     },
-    pageClasses() {
+    pageClasses () {
       const userPageClass = this.$page.frontmatter.pageClass
       return [
         {
           'no-navbar': !this.shouldShowNavbar,
           'sidebar-open': this.isSidebarOpen,
-          'no-sidebar': !this.shouldShowSidebar,
+          'no-sidebar': !this.shouldShowSidebar
         },
         userPageClass
       ]
@@ -98,38 +96,14 @@ export default {
     }
   },
 
-  created () {
-    if (this.$ssrContext) {
-      this.$ssrContext.title = this.$title
-      this.$ssrContext.lang = this.$lang
-      this.$ssrContext.description = this.$page.description || this.$description
-    }
-
-  },
-
   mounted () {
-    // update title / meta tags
-    this.currentMetaTags = []
-    const updateMeta = () => {
-      document.title = this.$title
-      document.documentElement.lang = this.$lang
-      const meta = [
-        {
-          name: 'description',
-          content: this.$description
-        },
-        ...(this.$page.frontmatter.meta || [])
-      ]
-      this.currentMetaTags = updateMetaTags(meta, this.currentMetaTags)
-    }
-    this.$watch('$page', updateMeta)
-    updateMeta()
+    window.addEventListener('scroll', this.onScroll)
 
     // configure progress bar
     nprogress.configure({ showSpinner: false })
 
     this.$router.beforeEach((to, from, next) => {
-      if (to.path !== from.path && !Vue.component(pathToComponentName(to.path))) {
+      if (to.path !== from.path && !Vue.component(to.name)) {
         nprogress.start()
       }
       next()
@@ -139,10 +113,6 @@ export default {
       nprogress.done()
       this.isSidebarOpen = false
     })
-  },
-
-  beforeDestroy () {
-    updateMetaTags(null, this.currentMetaTags)
   },
 
   methods: {
@@ -167,24 +137,6 @@ export default {
         }
       }
     }
-  }
-}
-
-function updateMetaTags (meta, current) {
-  if (current) {
-    current.forEach(c => {
-      document.head.removeChild(c)
-    })
-  }
-  if (meta) {
-    return meta.map(m => {
-      const tag = document.createElement('meta')
-      Object.keys(m).forEach(key => {
-        tag.setAttribute(key, m[key])
-      })
-      document.head.appendChild(tag)
-      return tag
-    })
   }
 }
 </script>
