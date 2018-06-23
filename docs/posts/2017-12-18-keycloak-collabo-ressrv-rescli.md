@@ -4,8 +4,8 @@ date: 2017-12-18T00:00:00+09:00
 category: keycloak
 tags:
 - keycloak
-- spring boot
-- spring security
+- spring-boot
+- spring-security
 - kotlin
 ---
 

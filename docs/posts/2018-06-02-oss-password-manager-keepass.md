@@ -2,7 +2,7 @@
 title: OSSのパスワードマネージャKeePassはいいぞ
 date: 2018-06-02T16:00:00+09:00
 tags:
-- password manager
+- password-manager
 - 1password
 - keepass
 ---

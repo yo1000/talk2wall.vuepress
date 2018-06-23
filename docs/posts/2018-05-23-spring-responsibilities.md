@@ -1,9 +1,9 @@
 ---
-title: Spring初学者がはじめに知るべき責務とレイヤー
+title: Spring初学者が最初に知るべき責務とレイヤー
 date: 2018-05-23T04:00:00+09:00
 tags:
 - spring
-- spring boot
+- spring-boot
 ---
 
 このポストは、[過去にQiitaで書いたもの](https://qiita.com/yo1000/items/a6acbf5f454a7f53aef9)を改訂したものです。
