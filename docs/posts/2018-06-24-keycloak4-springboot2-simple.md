@@ -446,7 +446,7 @@ class Kc4Controller {
 ```
 
 アプリケーションが起動したら、 http://127.0.0.1/admin にアクセスしてログインします。
-Keycloakを経由して、認証情報を取得できることが確認できましたね！！
+Keycloakを経由して、認証情報を取得できましたね！！
 
 ![img/2018-06-24_kc4-sso-login_64kb_4fps.gif](img/2018-06-24_kc4-sso-login_64kb_4fps.gif)
 
