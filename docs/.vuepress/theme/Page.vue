@@ -14,7 +14,10 @@
         </div>
       </div>
     </div>
+    <div class="content overview" v-if="overview" v-html="overview"></div>
+    <Requirements/>
     <Content :custom="false"/>
+    <References/>
     <div class="page-edit">
       <div class="edit-link" v-if="editLink">
         <a :href="editLink" target="_blank" rel="noopener noreferrer">{{ editLinkText }}</a>
@@ -48,6 +51,7 @@
 
 <script>
 import Vue from 'vue'
+import MarkdownIt from 'markdown-it'
 import { resolvePage, normalize, outboundRE, endingSlashRE } from './util'
 
 export default {
@@ -103,6 +107,52 @@ export default {
         )
       }
     })
+    Vue.component('Requirements', {
+      render: function (createElement) {
+        if (!this.$page.frontmatter.requirements) {
+          return
+        }
+        return createElement(
+          'div', {
+            attrs: {
+              class: 'content requirements'
+            }
+          }, [
+            createElement('h2', '要件'),
+            createElement('ul', this.$page.frontmatter.requirements.map((r) => {
+              return createElement('li', r)
+            }))
+          ]
+        )
+      }
+    })
+    Vue.component('References', {
+      render: function (createElement) {
+        if (!this.$page.frontmatter.references) {
+          return
+        }
+        return createElement(
+          'div', {
+            attrs: {
+              class: 'content references'
+            }
+          }, [
+            createElement('h2', '参考'),
+            createElement('ul', this.$page.frontmatter.references.map((r) => {
+              return createElement('li', [
+                createElement('a', {
+                  attrs: {
+                    href: r,
+                    target: '_blank'
+                  }
+                }, r),
+                createElement('OutboundLink')
+              ])
+            }))
+          ]
+        )
+      }
+    })
   },
   props: ['sidebarItems'],
   computed: {
@@ -136,6 +186,13 @@ export default {
       if (!this.date.getTime()) return '----/--/--'
       return this.date.toLocaleDateString({ ca:'iso8601' },
         { timeZone:"Asia/Tokyo", year:"numeric", month:"2-digit", day:"2-digit" })
+    },
+    overview () {
+      if (!this.$page.frontmatter.overview) return null
+      const md = new MarkdownIt()
+      return this.$page.frontmatter.overview.split(/\r\n|\r|\n/).map((o) => {
+        return md.render(o)
+      }).join('')
     },
     prev () {
       const prev = this.$page.frontmatter.prev
@@ -254,6 +311,10 @@ function find (page, items, offset) {
       margin-top -6rem
     > p:first-child
       margin-top -2rem
+  .references
+    ul
+      list-style none
+      padding-left 0
   .title
     padding 2rem 2.5rem 0 2.5rem
     margin 0 auto
